@@ -1,5 +1,4 @@
 # vision_data_tools
-vision_data_tools
 
 ```
 Please use labelme to label your image data before using the tools.
@@ -9,7 +8,7 @@ The suggested steps:
 1_move_unlabeld.py
 2_labelme2mask.py
 3_check_image_label.py
-4_split_train_dadta.py
+4_split_train_data.py
 
 grid_images.py can help yor split/cut the big picture to smaller pictures.
 rotate_images.py can help you do rotation.
