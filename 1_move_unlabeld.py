@@ -40,6 +40,8 @@ for file in dirs:
                 os.system('mv "' + dpath + path_linkage + file2[0] + '.' + file2[1] + '"' + ' to_be_labeld')
             else:
                 os.system('move "' + dpath + path_linkage + file2[0] + '.' + file2[1] + '"' + ' to_be_labeld')
+
+
             
         else:
             print('find bmp & json:',file2[0] + '.json')

@@ -24,10 +24,10 @@ if len(sys.argv) != 2:
 dpath = sys.argv[1].rstrip(path_linkage)
 
 # change path if you want to run on Linux
-train_image = dpath + '%strain%simage%s' % (path_linkage)
-train_label = dpath + '%strain%slabel%s' % (path_linkage)
-val_image = dpath + '%sval%simage%s' % (path_linkage)
-val_label = dpath + '%sval%slabel%s' % (path_linkage)
+train_image = dpath + '%strain%simage%s' % (path_linkage,path_linkage,path_linkage)
+train_label = dpath + '%strain%slabel%s' % (path_linkage,path_linkage,path_linkage)
+val_image = dpath + '%sval%simage%s' % (path_linkage,path_linkage,path_linkage)
+val_label = dpath + '%sval%slabel%s' % (path_linkage,path_linkage,path_linkage)
 
 if os.path.exists(dpath + path_linkage + 'val') == False:
     os.mkdir(dpath + path_linkage + 'val')
