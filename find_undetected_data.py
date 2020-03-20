@@ -9,7 +9,6 @@
 import os, sys
 import cv2
 import numpy as np
-import numpy as np
 from PIL import Image, ImageDraw
 
 black = (0, 0, 0)
@@ -37,6 +36,18 @@ dirs = os.listdir(dpath3)
 if os.path.exists(dpath2) == False:
     os.mkdir(dpath2)
 
+    
+#---------------------
+# is_img_black
+#---------------------
+def is_img_black(img):
+    w = img.shape[0]
+    h = img.shape[1]
+    blank_image = np.zeros((h,w,3), np.uint8)   
+    return np.array_equal(blank_image,img)
+    
+    
+    
 i = 0
 for file in dirs:  
     print('file:',file)
@@ -45,7 +56,7 @@ for file in dirs:
     img = cv2.imread(dpath3 +  path_linkage + file)
     w = img.shape[0]
     h = img.shape[1]
-    if sum(sum(sum(img))) == 0:
+    if is_img_black(sub_img):
         # nothing was detected, this is the one we want to copy
 
         p1 = dpath + path_linkage + file2[0].rstrip('_predict') + '.jpg'

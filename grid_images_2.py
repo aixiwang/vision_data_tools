@@ -29,6 +29,10 @@ dirs2 = os.listdir(label_path)
 #n1 = data_n
 #print('n1:',n1)
 
+
+#---------------------
+# imcrop
+#---------------------   
 def imcrop(img, bbox): 
     x1,y1,x2,y2 = bbox
     if x1 < 0 or y1 < 0 or x2 > img.shape[1] or y2 > img.shape[0]:
@@ -36,6 +40,9 @@ def imcrop(img, bbox):
     print('y1:y2, x1:x2 ->',img.shape,y1,y2,x1,x2)
     return img[y1:y2, x1:x2]
 
+#---------------------
+# pad_img_to_fit_bbox
+#---------------------   
 def pad_img_to_fit_bbox(img, x1, x2, y1, y2):
     img = np.pad(img, ((np.abs(np.minimum(0, y1)), np.maximum(y2 - img.shape[0], 0)),
                (np.abs(np.minimum(0, x1)), np.maximum(x2 - img.shape[1], 0)), (0,0)), mode="constant")
@@ -44,6 +51,17 @@ def pad_img_to_fit_bbox(img, x1, x2, y1, y2):
     x1 += np.abs(np.minimum(0, x1))
     x2 += np.abs(np.minimum(0, x1))
     return img, x1, x2, y1, y2
+
+#---------------------
+# is_img_black
+#---------------------
+def is_img_black(img):
+    w = img.shape[0]
+    h = img.shape[1]
+    blank_image = np.zeros((h,w,3), np.uint8)   
+    return np.array_equal(blank_image,img)
+    
+    
     
 i = 0
 for file in dirs2:
@@ -65,7 +83,7 @@ for file in dirs2:
         bbox = (0,0,int(w/2-1),int(h/2-1))
         sub_img = imcrop(image,bbox)
         
-        if sum(sum(sum(sub_img))) > 0:
+        if is_img_black(sub_img) == False:
             sub_img2 = imcrop(image2,bbox)
             cv2.imwrite(label_path + path_linkage + file2[0] + '_sub0.' + file2[1],sub_img)
             cv2.imwrite(image_path + path_linkage + file2[0] + '_sub0.' + file2[1],sub_img2)
@@ -76,7 +94,7 @@ for file in dirs2:
         bbox = (int(w/2),0,w-1,int(h/2-1))
         sub_img = imcrop(image,bbox)
         
-        if sum(sum(sum(sub_img))) > 0:
+        if is_img_black(sub_img) == False:
             sub_img2 = imcrop(image2,bbox)
             cv2.imwrite(label_path + path_linkage + file2[0] + '_sub1.' + file2[1],sub_img)
             cv2.imwrite(image_path + path_linkage + file2[0] + '_sub1.' + file2[1],sub_img2)
@@ -88,7 +106,7 @@ for file in dirs2:
         bbox = (0,int(h/2),int(w/2),h-1)
         sub_img = imcrop(image,bbox)
         
-        if sum(sum(sum(sub_img))) > 0:
+        if is_img_black(sub_img) == False:
             sub_img2 = imcrop(image2,bbox)
             cv2.imwrite(label_path + path_linkage + file2[0] + '_sub2.' + file2[1],sub_img)
             cv2.imwrite(image_path + path_linkage + file2[0] + '_sub2.' + file2[1],sub_img2)
@@ -100,7 +118,7 @@ for file in dirs2:
         bbox = (int(w/2),int(h/2),w-1,h-1)
         sub_img = imcrop(image,bbox)
 
-        if sum(sum(sum(sub_img))) > 0:
+        if is_img_black(sub_img) == False:
             sub_img2 = imcrop(image2,bbox)
             cv2.imwrite(label_path + path_linkage + file2[0] + '_sub3.' + file2[1],sub_img)
             cv2.imwrite(image_path + path_linkage + file2[0] + '_sub3.' + file2[1],sub_img2)
