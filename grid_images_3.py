@@ -84,7 +84,7 @@ for file in dirs2:
                 
                 if sum(sum(sum(sub_img))) > 0:
                     sub_img2 = imcrop(image2,bbox)
-                    cv2.imwrite(label_path + path_linkage + 'new_' + file2[0] + '_sub%d.' % (k) + file2[1],sub_img)
+                    #cv2.imwrite(label_path + path_linkage + 'new_' + file2[0] + '_sub%d.' % (k) + file2[1],sub_img)
                     cv2.imwrite(image_path + path_linkage + 'new_' + file2[0] + '_sub%d.' % (k) + file2[1],sub_img2)
                 else:
                     print('skip index:',k)

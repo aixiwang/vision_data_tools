@@ -36,8 +36,6 @@ dirs = os.listdir(dpath)
 if os.path.exists(dpath2) == False:
     os.mkdir(dpath2)
 
-
-    
 i = 0
 for file in dirs:  
     print('file:',file)

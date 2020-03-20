@@ -48,10 +48,20 @@ def pad_img_to_fit_bbox(img, x1, x2, y1, y2):
     
 i = 0
 for file in dirs:  
+
+    file2 = file.split('.')
+    print('file:',file)
+    
+    if file2[1] != 'jpg' and file2[1] != 'bmp' and file2[1] != 'png':
+        continue
+        
+        
+
     if file.find('cam') >= 0 and file.find('_sub') < 0:
         image = cv2.imread(dpath + path_linkage + file)
-        file2 = file.split('.')
-        print('file:',file,image.shape)
+
+        
+ 
         h = image.shape[0]
         w = image.shape[1]
         

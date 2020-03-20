@@ -11,7 +11,7 @@ import cv2
 import numpy as np
 
 if len(sys.argv) != 2:
-    print('usage: python grid_images.py data_path')
+    print('usage: python grid_images2.py data_path')
     sys.exit(-1)
 
 if os.name == "posix":
@@ -48,15 +48,18 @@ def pad_img_to_fit_bbox(img, x1, x2, y1, y2):
 i = 0
 for file in dirs2:
 
+    file2 = file.split('.')
+    print('file:',file)
+    
+    if file2[1] != 'jpg' and file2[1] != 'bmp' and file2[1] != 'png':
+        continue
+        
     if file.find('_sub') < 0:
         image = cv2.imread(label_path + path_linkage + file)
         image2 = cv2.imread(image_path + path_linkage + file)
 
-        file2 = file.split('.')
-        print('file:',file,image.shape)
         h = image.shape[0]
         w = image.shape[1]
-        
         
         # top, left
         bbox = (0,0,int(w/2-1),int(h/2-1))
