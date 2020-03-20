@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 #------------------------------------------
-# grid_images
+# find_undetected_data
 # 
 #
 # run on windows
@@ -19,7 +19,7 @@ train_percentage = 0.7
 val_percentage = 0.3
 
 if len(sys.argv) != 4:
-    print('usage: python grid_images.py data_path desc_path result_path')
+    print('usage: python find_undetected_data.py data_path desc_path result_path')
     sys.exit(-1)
 
 if os.name == "posix":
